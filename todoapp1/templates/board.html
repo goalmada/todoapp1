@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roadmap</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/board.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Roadmap</div>
+    <div class="topbar-actions">
+      <button id="open-meeting-modal" class="btn btn-primary">+ Paste meeting notes</button>
+      <button id="open-new-task" class="btn btn-ghost">New task</button>
+      <div class="who" id="who" title="Click to change">—</div>
+    </div>
+  </header>
+
+  <main id="board" class="board">
+    <!-- columns rendered by JS -->
+  </main>
+
+  <!-- Meeting notes modal -->
+  <div id="meeting-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2>Paste meeting notes</h2>
+        <button class="icon-btn" data-close-modal>&times;</button>
+      </div>
+      <p class="muted">Drop the raw transcript or your bullet notes. Claude will pull out action items, each linked back to the exact line that inspired it.</p>
+      <textarea id="meeting-text" placeholder="Paste here..."></textarea>
+      <div class="modal-foot">
+        <span id="meeting-status" class="muted"></span>
+        <button id="extract-btn" class="btn btn-primary">Extract tasks</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- New task modal -->
+  <div id="new-task-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card narrow">
+      <div class="modal-head">
+        <h2>New task</h2>
+        <button class="icon-btn" data-close-modal>&times;</button>
+      </div>
+      <input id="new-task-title" placeholder="Task title">
+      <textarea id="new-task-desc" placeholder="Optional description" rows="3"></textarea>
+      <div class="modal-foot">
+        <span></span>
+        <button id="create-task-btn" class="btn btn-primary">Create</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detail side sheet -->
+  <aside id="sheet" class="sheet hidden" aria-hidden="true">
+    <div class="sheet-head">
+      <div class="sheet-meta" id="sheet-meta"></div>
+      <button class="icon-btn" id="sheet-close">&times;</button>
+    </div>
+    <div class="sheet-body" id="sheet-body"></div>
+  </aside>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="{{ url_for('static', filename='js/board.js') }}"></script>
+</body>
+</html>

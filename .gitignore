@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Env / secrets
+.env
+.env.local
+
+# Flask / SQLite
+instance/
+*.db
+*.sqlite
+*.sqlite3
+
+# Editor
+.DS_Store
+.idea/
+.vscode/
